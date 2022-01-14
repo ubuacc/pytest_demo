@@ -1,0 +1,44 @@
+testinfo:
+       - id: test_login001
+         title: 登录测试
+         info: 打开anker首页
+testcase:
+       - element_info: tabHover
+         find_type: ID
+         operate_type: click
+         info: 切换电脑账户密码登录
+       - element_info: j_username
+         find_type: ID
+         operate_type: send_keys
+         info: 输入用户名
+       - element_info: j_password
+         find_type: ID
+         operate_type: send_keys
+         info: 输入密码
+       - element_info: loginButton
+         find_type: ID
+         operate_type: click
+         info: 单击登录按钮
+       - element_info: //*[@id="authen1Form"]/ul/li[1]/span
+         find_type: XPATH
+         operate_type: click
+         info: 单击清空用户名
+       - element_info: userProNick
+         find_type: ID
+         operate_type: perform
+         info: 鼠标悬停账户菜单
+       - element_info: //ul[@role="menu"]/.//i[@class="iconfont icon-Signout"]
+         find_type: XPATH
+         operate_type: click
+         info: 选择退出
+check:
+       - element_info: //*[@id="errorDivMsg"]
+         find_type: XPATH
+         info: 检查输入手机号或密码，登录异常提示
+       - element_info: //*[@id="layout-wrapper"]/section/div[1]/div[2]/div[2]/span[2]
+         find_type: XPATH
+         info: 成功登录，当前用户名
+       - element_info: //*[@id="authen20Form"]/div/p
+         find_type: XPATH
+         info: 检查退出登录是否成功
+
