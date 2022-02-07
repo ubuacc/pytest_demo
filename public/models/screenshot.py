@@ -16,6 +16,5 @@ def screenshot(driver,filename):
         :return:返回指定路径的截图文件
         '''
         file_name = filename + '.png'
-        filepath = os.path.join(setting.Screenshots_DIR, 'screenshots')
-        screen_path = os.path.join(filepath, file_name)
+        screen_path = os.path.join(setting.Screenshots_DIR, file_name)
         return driver.get_screenshot_as_file(screen_path)

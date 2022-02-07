@@ -9,7 +9,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from public.models.logger import Logs
-from public.models.screenshot import Screenshot
 from config import setting
 
 con = configparser.ConfigParser()
@@ -40,7 +39,7 @@ class BasePage(object):
         """
         # url = self.base_url + url
         self.driver.get(self.base_url)
-        assert self.on_page(),'Did not land on %s' % self.base_url
+        # assert self.on_page(),'Did not land on %s' % self.base_url
 
     def open(self):
         """

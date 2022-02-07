@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 # @Author: will.tan
 # @time: 2022/1/14 10:02
+
 import unittest
-import unittest
-from .driver import browser
+from .getdriver import browser
 
 class TestUnit(unittest.TestCase):
     '''
     自定义TestUnit类
     '''
+
     @classmethod
     def setUpClass(cls):
         cls.driver = browser()
@@ -19,4 +20,11 @@ class TestUnit(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
+
+
+
+
+
+
+
 

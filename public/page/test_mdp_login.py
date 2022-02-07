@@ -3,25 +3,16 @@
 # @Author: will.tan
 # @time: 2021/12/30 15:34
 import os
-
+from public.models.getdriver import browser
 from selenium.webdriver.common.by import By
 from public.page.basepage import BasePage
 from public.models.getyaml import YamlRead
 from config import setting
 
-configdata = YamlRead(os.path.join(setting.CONFIG_DIR, 'login.yaml'))
+configdata = YamlRead(os.path.join(setting.TEST_Element_YAML, 'login.yaml'))
 
 
 class Login(BasePage):
-    # url = 'https://mdp-sit.anker-in.com/'
-
-    # def __init__(self):
-    #     self.driver = webdriver.Chrome()
-    #     self.dr = BasePage(self.driver)
-    #     self.driver.get(self.url)
-    #     self.driver.maximize_window()
-    #     self.driver.implicitly_wait(20)
-
 
     def login_google(self):
         pass
@@ -63,18 +54,30 @@ class Login(BasePage):
         '''
         self.click(self.button_loc)
 
-    current_username_loc = (By.XPATH, configdata.get_checkelementinfo(1))
+    current_username_loc = (By.XPATH, configdata.get_checkelementinfo(2))
 
     def login_success(self):
         return self.find_presence_elem(self.current_username_loc).text
 
-    login_failure_loc = (By.XPATH, configdata.get_checkelementinfo(0))
+    login_username_empty_loc = (By.XPATH, configdata.get_checkelementinfo(0))
+
+    def login_username_empty(self):
+        '''用户名为空提示'''
+        return self.find_presence_elem(self.login_username_empty_loc).text
+
+    login_password_empty_loc = (By.XPATH, configdata.get_checkelementinfo(1))
+
+    def login_password_empty(self):
+        '''密码为空提示'''
+        return self.find_presence_elem(self.login_password_empty_loc).text
+
+    login_failure_loc = (By.XPATH, configdata.get_checkelementinfo(3))
 
     def login_failure(self):
-        '''用户名或密码错误提示'''
+        '''登录失败提示'''
         return self.find_presence_elem(self.login_failure_loc).text
 
-    loginout_loc = (By.XPATH, configdata.get_checkelementinfo(2))
+    loginout_loc = (By.XPATH, configdata.get_checkelementinfo(4))
 
     def loginout(self):
         '''登出后信息'''
@@ -93,7 +96,7 @@ class Login(BasePage):
 
     '''组合操作'''
 
-    def test_login_user(self, username, password):
+    def login_user(self, username, password):
         '''
         账号密码登录
         :param username: 用户名
@@ -108,9 +111,11 @@ class Login(BasePage):
 
 
 # if __name__ == '__main__':
+#     from public.models.getdriver import browser
 #     username = 'david.luo'
 #     password = 'Ni&Li12345'
-#     case = Login()
-#     case.test_login_user(username, password)
-#     case.login_exit()
-#     # a.switch_to_computerlogin
+#     driver = browser()
+#     case = TestLogin(driver)
+#     case.test_login1_user(username, password)
+    # case.login_exit()
+    # a.switch_to_computerlogin

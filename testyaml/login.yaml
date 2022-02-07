@@ -32,13 +32,18 @@ testcase:
          operate_type: click
          info: 选择退出
 check:
-       - element_info: //*[@id="errorDivMsg"]
+       - element_info: //*[@id="usernameErrorDivMsg"]
          find_type: XPATH
-         info: 检查输入手机号或密码，登录异常提示
+         info: 用户名错误提示
+       - element_info: //*[@id="passwordErrorDivMsg"]
+         find_type: XPATH
+         info: 密码错误提示
        - element_info: //*[@id="layout-wrapper"]/section/div[1]/div[2]/div[2]/span[2]
          find_type: XPATH
          info: 成功登录，当前用户名
+       - element_info: //*[@id="errorDivMsg"]
+         find_type: XPATH
+         info: 登录失败
        - element_info: //*[@id="authen20Form"]/div/p
          find_type: XPATH
          info: 检查退出登录是否成功
-
