@@ -1,0 +1,71 @@
+testinfo:
+       - id: test_login002
+         title: 市场大区测试
+         info: 打开IPC-市场大区页面
+testcase:
+       - element_info: //*[@id="menu"]/li[1]/div/span/span
+         find_type: xpath
+         operate_type: click
+         info: 点击IPC主数据下拉菜单
+       - element_info: //*[@id="menu"]/li[1]/ul/li[1]/a
+         find_type: xpath
+         operate_type: click
+         info: 点击进入市场大区页面
+       - element_info: //*[@id="sc_mdp_market_channel_number"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 输入编号查询条件
+       - element_info: //*[@id="sc_mdp_market_channel_abbr_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 输入缩写查询条件
+       - element_info: //*[@id="search"]/div/button
+         find_type: XPATH
+         operate_type: click
+         info: 单击查询
+       - element_info: //*[@id="add"]/div/button
+         find_type: xpath
+         operate_type: click
+         info: 单击新增
+       - element_info: //*[@id="mdp_market_channel_abbr_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入缩写
+       - element_info: //*[@id="mdp_market_channel_cn_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入中文名
+       - element_info: //*[@id="mdp_market_channel_en_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入英文名
+       - element_info: //*[@id="mdp_market_channel_remark"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入备注
+       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[1]/span[1]/input
+         find_type: xpath
+         operate_type: click
+         info: 编辑新增页面启用状态
+       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[2]/span[1]/input
+         find_type: xpath
+         operate_type: click
+         info: 编辑新增页面禁用状态
+       - element_info: //*[@id="save"]/div/button
+         find_type: xpath
+         operate_type: click
+         info: 编辑新增页面点击保存
+       - element_info: //*[@id="1472762263433404417"]/div/button
+         find_type: XPATH
+         operate_type: click
+         info: 单击导出
+check:
+       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[1]/div/table/tbody/tr/td[3]/div
+         find_type: XPATH
+         info: 按编号条件查询市场大区-编号字段
+       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[2]/div/div/table/tbody/tr/td[2]/div
+         find_type: XPATH
+         info: 按缩写条件查询市场大区-缩写字段
+       - element_info: //*[@id="sc_result"]/ul/li[1]
+         find_type: XPATH
+         info: 查询结果条数
