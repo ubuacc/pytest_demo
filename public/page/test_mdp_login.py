@@ -12,7 +12,7 @@ from config import setting
 configdata = YamlRead(os.path.join(setting.TEST_Element_YAML, 'login.yaml'))
 
 
-class Login(BasePage):
+class TestLogin(BasePage):
 
     def login_google(self):
         pass
@@ -96,7 +96,7 @@ class Login(BasePage):
 
     '''组合操作'''
 
-    def login_user(self, username, password):
+    def test_login_user(self, username, password):
         '''
         账号密码登录
         :param username: 用户名

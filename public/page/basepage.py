@@ -31,7 +31,7 @@ class BasePage(object):
         """
         return self.driver.current_url == self.base_url
 
-    def _open(self,url):
+    def _open(self, url):
         """
         打开浏览器URL访问
         :param url: URL地址
