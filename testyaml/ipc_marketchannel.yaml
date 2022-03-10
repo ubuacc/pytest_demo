@@ -43,11 +43,11 @@ testcase:
          find_type: xpath
          operate_type: send_keys
          info: 编辑新增页面输入备注
-       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[1]/span[1]/input
+       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[1]/span[2]/span
          find_type: xpath
          operate_type: click
          info: 编辑新增页面启用状态
-       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[2]/span[1]/input
+       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[2]/span[2]/span
          find_type: xpath
          operate_type: click
          info: 编辑新增页面禁用状态

@@ -9,13 +9,14 @@ from public.page.basepage import BasePage
 from public.models.getyaml import YamlRead
 from config import setting
 
+
 configdata = YamlRead(os.path.join(setting.TEST_Element_YAML, 'ipc_marketchannel.yaml'))
 
 
-class TestMarketChannel(BasePage):
+class MarketChannel(BasePage):
 
     ipc_select_loc = (By.XPATH, configdata.get_elementinfo(0))
-    def test_click_ipc_select(self):
+    def click_ipc_select(self):
         """
         点击IPC主数据下拉框
         :return:
@@ -23,7 +24,7 @@ class TestMarketChannel(BasePage):
         self.find_clickable_elem(self.ipc_select_loc).click()
 
     channel_loc = (By.XPATH, configdata.get_elementinfo(1))
-    def test_click_channel(self):
+    def click_channel(self):
         """
         点击市场大区进入市场大区页面
         :return:
@@ -98,15 +99,33 @@ class TestMarketChannel(BasePage):
         """
         self.send_keys(self.add_remark_loc,add_remark)
 
-    add_save_button_loc = (By.XPATH, configdata.get_elementinfo(10))
+    add_enable_loc = (By.XPATH, configdata.get_elementinfo(10))
+    def add_enable(self):
+        """
+        新增页面启用状态
+        :return:
+        """
+        self.click(self.add_enable_loc)
+
+
+
+    add_disabled_loc = (By.XPATH, configdata.get_elementinfo(11))
+    def add_disabled(self):
+        """
+        新增页面禁用状态
+        :return:
+        """
+        self.click(self.add_disabled_loc)
+
+    add_save_button_loc = (By.XPATH, configdata.get_elementinfo(12))
     def add_save_button(self):
         """
         新增页面点击保存
         :return:
         """
-        self.click(self.add_save_button())
-        
-    click_export_button_loc = (By.XPATH, configdata.get_elementinfo(6))
+        self.click(self.add_save_button_loc)
+
+    click_export_button_loc = (By.XPATH, configdata.get_elementinfo(13))
     def click_export_button(self):
         """
         点击导出按钮
@@ -139,19 +158,50 @@ class TestMarketChannel(BasePage):
         return self.find_presence_elem(self.searchresult_count_loc).text
 
     """组合操作"""
-    def search(self):
-        pass
+    def open_marketchannel(self):
+        """
+        进入市场大区页面
+        :return:
+        """
+        self.click_ipc_select()
+        self.click_channel()
+
+    def search_marketchannel(self, number, abbr_name):
+        """
+        条件查询：按编号和缩写查询
+        :return:
+        """
+        self.number(number)
+        self.abbr_name(abbr_name)
+        self.click_search_button()
+
+    def add_marketchannel(self,add_abbr_name, add_cn_name, add_en_name, add_remark):
+        """
+        新增市场大区
+        :return:
+        """
+        self.click_add_button()
+        self.add_abbr_name(add_abbr_name)
+        self.add_cn_name(add_cn_name)
+        self.add_en_name(add_en_name)
+        self.add_remark(add_remark)
+        self.add_disabled()
+        self.add_save_button()
+
 
 if __name__ == '__main__':
-    from test_mdp_login import TestLogin
+    from test_mdp_login import Login
     from public.models.getdriver import browser
     username = 'david.luo'
     password = 'Ni&Li12345'
     driver = browser()
-    case = TestLogin(driver)
-    case.test_login_user(username, password)
-    case2 = TestMarketChannel(driver)
-    case2.test_click_ipc_select()
-    case2.test_click_channel()
-    case2.abbr_name('cn')
-    case2.click_search_button()
+    case = Login(driver)
+    case.login_user(username, password)
+    case2 = MarketChannel(driver)
+    # case2.test_click_ipc_select()
+    # case2.test_click_channel()
+    # case2.abbr_name('cn')
+    # case2.click_search_button()
+    # case2.search('MC0001', 'CN')
+    case2.open_marketchannel()
+    case2.add_marketchannel("test11","测试11","test11","1111111111")

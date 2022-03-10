@@ -10,6 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from public.models.logger import Logs
 from config import setting
+from selenium.webdriver.common.action_chains import ActionChains
 
 con = configparser.ConfigParser()
 con.read(setting.CONFIG_DIR,encoding='utf-8')
@@ -86,6 +87,9 @@ class BasePage(object):
         element = self.find_clickable_elem(mark)
         element.click()
 
+    def actions_move_click(self, mark):
+        ActionChains(self.driver).move_to_element(mark).perform()
+
 if __name__ == '__main__':
     locator1 = (By.ID,'kw')
     locator2 = (By.ID, 'su')
@@ -93,4 +97,5 @@ if __name__ == '__main__':
     case = BasePage(driver)
     driver.get('http://www.baidu.com')
     case.find_presence_elem(locator=locator1).send_keys('hhh')
-    case.find_clickable_elem(locator2).click()
+    # case.find_clickable_elem(locator2).click()
+    case.actions_move_click(locator2)
