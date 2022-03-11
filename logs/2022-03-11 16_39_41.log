@@ -1,0 +1,3 @@
+[2022-03-11 16:39:41,119] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_mcsearch001.2 ; 测试点-> 按市场大区编号查询
+[2022-03-11 16:39:47,477] [logger.py|__console] [line:41] INFO    : 检查点-> MC0127
+[2022-03-11 16:39:47,541] [logger.py|__console] [line:41] INFO    : 查询成功，返回实际结果是->: MC0127
