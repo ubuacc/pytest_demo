@@ -60,12 +60,15 @@ testcase:
          operate_type: click
          info: 单击导出
 check:
-       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[1]/div/table/tbody/tr/td[3]/div
+       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[1]/div/table/tbody/tr/td[4]/div
          find_type: XPATH
          info: 按编号条件查询市场大区-编号字段
-       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[2]/div/div/table/tbody/tr/td[2]/div
+       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[2]/div/div/table/tbody/tr/td[3]/div
          find_type: XPATH
          info: 按缩写条件查询市场大区-缩写字段
        - element_info: //*[@id="sc_result"]/ul/li[1]
          find_type: XPATH
          info: 查询结果条数
+       - element_info: /html/body/div[6]/span/div/div/div/span
+         find_type: xpath
+         info: 新增后保存成功字段

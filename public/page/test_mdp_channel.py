@@ -3,6 +3,8 @@
 # @Author: will.tan
 # @time: 2022/2/17 15:44
 import os
+
+
 from public.models.getdriver import browser
 from selenium.webdriver.common.by import By
 from public.page.basepage import BasePage
@@ -157,6 +159,14 @@ class MarketChannel(BasePage):
         """
         return self.find_presence_elem(self.searchresult_count_loc).text
 
+    add_success_loc = (By.XPATH, configdata.get_checkelementinfo(3))
+    def add_success(self):
+        """
+        新增成功后返回保存成功字段
+        :return:
+        """
+        return self.find_presence_elem(self.add_success_loc).text
+
     """组合操作"""
     def open_marketchannel(self):
         """
@@ -192,6 +202,8 @@ class MarketChannel(BasePage):
 if __name__ == '__main__':
     from test_mdp_login import Login
     from public.models.getdriver import browser
+    import logger
+    log = logger.Logs()
     username = 'david.luo'
     password = 'Ni&Li12345'
     driver = browser()
@@ -204,4 +216,11 @@ if __name__ == '__main__':
     # case2.click_search_button()
     # case2.search('MC0001', 'CN')
     case2.open_marketchannel()
-    case2.add_marketchannel("test11","测试11","test11","1111111111")
+    case2.add_marketchannel("test117","测试11","test11","1111111111")
+    # case2.search_marketchannel('MC0001', 'CN')
+    # print(case2.searchlist_number())
+    log.info(case2.add_success())
+    print(case2.add_success())
+    add = case2.add_success()
+    print(add)
+    # log.info(case2.searchlist_addr_name())

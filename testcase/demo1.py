@@ -44,9 +44,14 @@
 # print(id(m),id(m3))
 # m3.cpu.calulate()
 import os
+import time
 
 import setting
 from getyaml import YamlRead
 
-testdata = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'testdata_marketchannel.yaml')).yaml_all()
-print(testdata)
+# testdata = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'testdata_marketchannel.yaml')).yaml_all()
+# print(testdata)
+
+testdata_add = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'testdata_add_marketchannel.yaml')).yaml_all()
+print(testdata_add)
+print(int(time.time()))
