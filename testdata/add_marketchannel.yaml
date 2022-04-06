@@ -1,0 +1,11 @@
+-
+  id: test_mcadd001.1
+  detail : 正向添加成功
+  screenshot : success_add
+  data:
+    add_abbr_name: test
+    add_cn_name: 测试
+    add_en_name: test
+    add_mark: 测试用按时间戳保持唯一
+  check :
+    - 保存成功

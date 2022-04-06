@@ -1,0 +1,21 @@
+-
+  id: test_mcadd001.1
+  detail : 正向添加成功
+  screenshot : success_add
+  data:
+    add_abbr_name: test #测试用按时间戳保持唯一
+    add_cn_name: 测试
+    add_en_name: test
+    add_mark: 测试用按时间戳保持唯一
+  check :
+    - 保存成功
+
+-
+  id: test_mcsearch001.2
+  detail: 查询流程
+  screenshot: search_success
+  data:
+    number: ""  #取新增市场大区时获取页面的number字段作为查询条件number值
+    abbr_name: test
+  check:
+    - ""  #取新增市场大区时的新增字段作为check值

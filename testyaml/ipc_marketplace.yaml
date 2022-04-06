@@ -1,0 +1,100 @@
+testinfo:
+       - id: test_mp001
+         title: 市场测试
+         info: 打开IPC-市场页面
+testcase:
+       - element_info: //*[@id="menu"]/li[1]/div/span/span
+         find_type: xpath
+         operate_type: click
+         info: 点击IPC主数据下拉菜单
+       - element_info: //*[@id="menu"]/li[1]/ul/li[3]/a
+         find_type: xpath
+         operate_type: click
+         info: 点击进入市场页面
+       - element_info: div.ant-col.ant-form-item-control-wrapper > div > span > div > div > div > ul > li > div > input
+         find_type: css_selector
+         operate_type: send_keys
+         info: 市场群下拉框输入市场群模糊搜索
+       - element_info: ul > li.ant-select-dropdown-menu-item.ant-select-dropdown-menu-item-active
+         find_type: css_selector
+         operate_type: click
+         info: 点击选择模糊搜索后的第一个市场群
+       - element_info: //*[@id="sc_mdp_market_place_number"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 输入编号查询条件
+       - element_info: //*[@id="sc_mdp_market_place_abbr_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 输入缩写查询条件
+       - element_info: //*[@id="search"]/div/button
+         find_type: XPATH
+         operate_type: click
+         info: 单击查询
+       - element_info: //*[@id="add"]/div/button
+         find_type: xpath
+         operate_type: click
+         info: 单击新增
+       - element_info: div[id="group_id"] > div > div.ant-col.ant-form-item-control-wrapper > div > span > div > div.ant-select-selection.ant-select-selection--single > div > div.ant-select-selection__placeholder
+         find_type: css_selector
+         operate_type: send_keys
+         info: 新增市场页面点击市场群下拉框
+       - element_info:  div.ant-select-search.ant-select-search--inline > div > input
+         find_type: css_selector
+         operate_type: send_keys
+         info: 新增市场页面市场群下拉框输入市场群模糊搜索
+       - element_info:  ul > li.ant-select-dropdown-menu-item.ant-select-dropdown-menu-item-active
+         find_type: css_selector
+         operate_type: click
+         info: 点击选择第一个市场群
+       - element_info: //*[@id="mdp_market_place_abbr_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入缩写
+       - element_info: //*[@id="mdp_market_place_cn_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入中文名
+       - element_info: //*[@id="mdp_market_place_en_name"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入英文名
+       - element_info: //*[@id="mdp_market_place_remark"]/div/div[2]/div/span/input
+         find_type: xpath
+         operate_type: send_keys
+         info: 编辑新增页面输入备注
+       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[1]/span[2]/span
+         find_type: xpath
+         operate_type: click
+         info: 编辑新增页面启用状态
+       - element_info: //*[@id="status"]/div/div[2]/div/span/div/label[2]/span[2]/span
+         find_type: xpath
+         operate_type: click
+         info: 编辑新增页面禁用状态
+       - element_info: //*[@id="save"]/div/button
+         find_type: xpath
+         operate_type: click
+         info: 编辑新增页面点击保存
+       - element_info: //*[@id="1473126858530594817"]/div/button
+         find_type: XPATH
+         operate_type: click
+         info: 单击导出
+check:
+       - element_info: div.ant-col.ant-form-item-control-wrapper > div > span > span
+         find_type: CSS_SELECTOR
+         info: 新增页面编号字段
+       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[1]/div/table/tbody/tr[1]/td[5]/div
+         find_type: XPATH
+         info: 按市场群条件查询市场-市场群字段
+       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[1]/div/table/tbody/tr[1]/td[4]/div
+         find_type: XPATH
+         info: 按编号条件查询市场-编号字段
+       - element_info: //*[@id="sc_result"]/div/div/div/div/div/div[2]/div/div/table/tbody/tr[1]/td[3]/div
+         find_type: XPATH
+         info: 按缩写条件查询市场-缩写字段
+       - element_info: //*[@id="sc_result"]/ul/li[1]
+         find_type: XPATH
+         info: 查询结果条数
+       - element_info:  div.ant-message > span > div > div > div > span
+         find_type: css_selector
+         info: 新增后保存成功字段
