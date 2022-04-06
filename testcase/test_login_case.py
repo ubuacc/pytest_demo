@@ -3,7 +3,7 @@
 # @Author: will.tan
 # @time: 2022/1/6 14:19
 
-from public.page.test_mdp_login import Login
+from public.page.mdp_login import Login
 from public.models.getyaml import YamlRead
 from public.models import myunit,logger,screenshot
 import os, ddt
@@ -11,7 +11,7 @@ from config import setting
 
 
 
-testdata = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'testdata_login.yaml')).yaml_all()
+testdata = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'login.yaml')).yaml_all()
 
 
 @ddt.ddt

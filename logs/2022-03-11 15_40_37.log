@@ -1,6 +1,0 @@
-[2022-03-11 15:40:37,894] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_login001.5 ; 测试点-> 手机号和密码正确
-[2022-03-11 15:40:43,003] [logger.py|__console] [line:41] INFO    : 检查点-> David Luo
-[2022-03-11 15:40:43,077] [logger.py|__console] [line:41] INFO    : 成功登录，返回实际结果是->: David Luo
-[2022-03-11 15:40:43,248] [logger.py|__console] [line:41] INFO    : -----> 开始执行退出流程操作
-[2022-03-11 15:40:45,913] [logger.py|__console] [line:41] INFO    : 检查点-> 找到请使用飞书扫描二维码登录 刷新元素,表示退出成功！
-[2022-03-11 15:40:45,976] [logger.py|__console] [line:41] INFO    : 退出登录，返回实际结果是->: 请使用飞书扫描二维码登录 刷新

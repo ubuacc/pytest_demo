@@ -5,20 +5,19 @@
 import time
 from time import sleep
 
-from getdriver import browser
-from public.page.test_mdp_channel import MarketChannel
-from public.page.test_mdp_login import Login
+from public.page.mdp_ipc_channel import MarketChannel
+from public.page.mdp_login import Login
 from public.models.getyaml import YamlRead
 from public.models import myunit, logger, screenshot
 import os, ddt
 from config import setting
 
-f = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'testdata_login.yaml')).yaml_all()
+f = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'login.yaml')).yaml_all()
 username = f[4]['data']['username']
 password = f[4]['data']['password']
 
-testdata = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'testdata_marketchannel.yaml')).yaml_all()
-testdata_add = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'testdata_add_marketchannel.yaml')).yaml_all()[0]
+testdata = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'marketchannel.yaml')).yaml_all()
+testdata_add = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'add_marketchannel.yaml')).yaml_all()[0]
 
 @ddt.ddt
 class TestMarketChannel(myunit.TestUnit):
@@ -69,7 +68,7 @@ class TestMarketChannel(myunit.TestUnit):
         # 调用新增市场大区函数
         po = MarketChannel(self.driver)
         self.add_marketchannel(testdata_add['data']['add_abbr_name'] + str(int(time.time())), testdata_add['data']['add_cn_name'], testdata_add['data']['add_en_name'], testdata_add['data']['add_mark'])
-        sleep(1)
+        sleep(2)
         self.assertEqual(testdata_add['check'][0], po.add_success(), "新增成功，返回实际结果是->: {}".format(po.add_success()))
         self.log.info("新增成功，返回实际结果是->: {}".format(po.add_success()))
         screenshot.screenshot(self.driver, testdata_add['screenshot'])

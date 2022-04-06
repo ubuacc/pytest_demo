@@ -1,3 +1,0 @@
-[2022-03-11 15:46:46,231] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_mcsearch001.1 ; 测试点-> 空查询
-[2022-03-11 15:46:51,543] [logger.py|__console] [line:41] INFO    : 检查点-> 总计 0 条, 第 0-0 条
-[2022-03-11 15:46:51,604] [logger.py|__console] [line:41] INFO    : 查询成功，返回实际结果是->: 总计 0 条, 第 0-0 条

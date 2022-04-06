@@ -4,7 +4,7 @@
 # @time: 2021/12/30 15:34
 import os
 
-import yaml
+from ruamel import yaml
 from public.models.logger import Logs
 
 # 1.在打开文件之前判断文件是否存在，将判断写在初始化方法内
@@ -12,6 +12,7 @@ class YamlRead():
     def __init__(self, filepath):
         # 实例化封装的日志模块
         self.logs = Logs()
+
         # 判断添加
         if os.path.exists(filepath):
             self.yamlpath = filepath
@@ -28,7 +29,7 @@ class YamlRead():
             with open(self.yamlpath, 'r', encoding="utf-8") as f:
                 # 获取文件中所有的值
                 file_data = f.read()
-            self.all_data = yaml.load(file_data, Loader=yaml.FullLoader)
+            self.all_data = yaml.load(file_data, Loader=yaml.Loader)
         return self.all_data
 
     # 通过索引值获取yaml文件中testdata的elementinfo字段
@@ -45,11 +46,17 @@ class YamlRead():
         else:
             self.logs.info('索引值超出取值范围，无法获取check--->elementinfo')
 
-    def get_yamlturple(self):
-        with open(self.yamlpath, 'r', encoding="utf-8") as f:
-            file_data = f.read()
-        data = yaml.load(file_data, Loader=yaml.FullLoader)
-        return data
+    # def get_yamlturple(self):
+    #     with open(self.yamlpath, 'r', encoding="utf-8") as f:
+    #         file_data = f.read()
+    #     data = yaml.load(file_data, Loader=yaml.FullLoader)
+    #     return data
+
+    # def yaml_modify(self, key, value):
+    #     testdata = self.yaml_all()
+    #     key = value
+    #     with open(self.yamlpath, 'w', encoding='utf-8') as f:
+    #         yaml.dump(testdata, f, Dumper=yaml.RoundTripLoader)
 
 
 # projectpath=os.path.abspath(os.path.join(os.getcwd(),'../..'))

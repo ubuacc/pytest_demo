@@ -1,3 +1,0 @@
-[2022-03-10 17:39:58,019] [logger.py|__console] [line:41] INFO    : 当前登录成功，登录账号为david.luo
-[2022-03-10 17:40:00,442] [logger.py|__console] [line:41] INFO    : 检查点-> 空
-[2022-03-10 17:40:00,521] [logger.py|__console] [line:41] INFO    : 查询成功，返回实际结果是->: 总计 0 条, 第 0-0 条

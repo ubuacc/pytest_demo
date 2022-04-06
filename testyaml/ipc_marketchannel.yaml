@@ -1,5 +1,5 @@
 testinfo:
-       - id: test_login002
+       - id: test_mc002
          title: 市场大区测试
          info: 打开IPC-市场大区页面
 testcase:
@@ -69,6 +69,9 @@ check:
        - element_info: //*[@id="sc_result"]/ul/li[1]
          find_type: XPATH
          info: 查询结果条数
-       - element_info: /html/body/div[6]/span/div/div/div/span
-         find_type: xpath
+       - element_info: body > div.ant-message > span > div > div > div > span
+         find_type: css_selector
          info: 新增后保存成功字段
+       - element_info: div[id="number"] > div > div.ant-col.ant-form-item-control-wrapper > div > span > span
+         find_type: css_selector
+         info: 新增页面获取编号字段

@@ -1,2 +1,0 @@
-[2022-02-07 15:19:42,406] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_login001.5 ; 测试点-> 手机号和密码正确
-[2022-02-07 15:19:44,234] [logger.py|__console] [line:41] INFO    : 检查点-> David Luo

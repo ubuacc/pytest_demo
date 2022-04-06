@@ -1,3 +1,0 @@
-[2022-03-11 15:47:02,234] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_mcsearch001.3 ; 测试点-> 按市场大区缩写查询
-[2022-03-11 15:47:07,444] [logger.py|__console] [line:41] INFO    : 检查点-> test01
-[2022-03-11 15:47:12,536] [logger.py|__console] [line:41] INFO    : 查询成功，返回实际结果是->: test01

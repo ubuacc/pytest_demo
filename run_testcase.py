@@ -16,7 +16,7 @@ if not os.path.exists(setting.TEST_REPORT):os.makedirs(setting.TEST_REPORT + '/'
 
 def add_case(test_path=setting.TEST_DIR):
     """加载所有的测试用例"""
-    discover = unittest.defaultTestLoader.discover(test_path, pattern='*_case.py')
+    discover = unittest.defaultTestLoader.discover(test_path, pattern='*_process_case.py')
     return discover
 
 def run_case(all_case,result_path=setting.TEST_REPORT):

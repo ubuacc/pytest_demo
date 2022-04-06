@@ -90,6 +90,14 @@ class BasePage(object):
     def actions_move_click(self, mark):
         ActionChains(self.driver).move_to_element(mark).perform()
 
+class DataAssociation:
+    """
+    脚本执行中存放临时参数变量，执行完清空
+    """
+    pass
+
+
+
 if __name__ == '__main__':
     locator1 = (By.ID,'kw')
     locator2 = (By.ID, 'su')
