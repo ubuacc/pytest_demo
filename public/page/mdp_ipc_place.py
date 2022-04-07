@@ -9,7 +9,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 
 
-from public.page.basepage import BasePage
+from public.page.basepage import BasePage, DA
 from public.models.getyaml import YamlRead
 from config import setting
 
@@ -235,6 +235,7 @@ class MarketPlace(BasePage):
         :return:
         """
         self.sendkey_mg_select(mg)
+        sleep(1)
         self.click_marketgroup()
         self.number_mp(number_mp)
         self.abbr_name_mp(abbr_name_mp)
@@ -248,15 +249,16 @@ class MarketPlace(BasePage):
         self.click_add_button_mp()
         self.add_click_mg_select()
         self.add_sendkeys_mg_select(mg)
+        sleep(1)
         self.add_click_marketgroup()
         self.add_abbr_name(abbr_name)
         self.add_cn_name(cn_name)
         self.add_en_name(en_name)
         self.add_mark(mark)
         self.add_enable()
-        num = self.add_number()
+        mp_number = self.add_number()
+        setattr(DA, 'mp_number', mp_number)
         self.add_save_button()
-        return num
 
 
 

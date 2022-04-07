@@ -80,12 +80,12 @@ from page.mdp_login import Login
 #         break
 # print('jieshu')
 # yaml = YAML()
-from public.page.basepage import DataAssociation
-da = DataAssociation()
-def ac():
-    testdata_add = 0
-# print(testdata_add)
-    setattr(da, 'data', testdata_add)
+from demo import da
+class aaaac():
+    def ac(self):
+        testdata_add = 0
+    # print(testdata_add)
+        setattr(da, 'data', testdata_add)
 # print(getattr(da, 'data'))
 # print('1')
 # testdata_add[1]['data']['number'] = 'tes'

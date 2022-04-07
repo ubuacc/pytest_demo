@@ -3,12 +3,13 @@
 # @Author: will.tan
 # @time: 2022/4/2 9:33
 import time
+import unittest
 from time import sleep
 
 from public.page.mdp_ipc_channel import MarketChannel
 from public.page.mdp_login import Login
 from public.models.getyaml import YamlRead
-from page.mdp_ipc_channel import DA
+from public.page.basepage import DA
 from public.models import myunit, logger, screenshot
 import os
 from config import setting
@@ -32,7 +33,7 @@ class TestMarketChannelProcess(myunit.TestUnit):
         MarketChannel(self.driver).search_marketchannel(number, abbr_name)
 
     def add_marketchannel(self, add_abbr_name, add_cn_name, add_en_name, add_mark):
-        return MarketChannel(self.driver).add_marketchannel(add_abbr_name, add_cn_name, add_en_name, add_mark)
+        MarketChannel(self.driver).add_marketchannel(add_abbr_name, add_cn_name, add_en_name, add_mark)
 
     def test_marketchannel_process(self):
         self.log.info("当前执行测试用例ID-> {0} ; 测试点-> {1}".format(testdata_process[0]['id'], testdata_process[0]['detail']))
@@ -42,23 +43,22 @@ class TestMarketChannelProcess(myunit.TestUnit):
         print(add_abbr_name)
         setattr(DA, 'mc_add_abbr_name', add_abbr_name)
         print(getattr(DA, 'mc_add_abbr_name'))
-        number = self.add_marketchannel(add_abbr_name,
-                                        testdata_process[0]['data']['add_cn_name'],
-                                        testdata_process[0]['data']['add_en_name'],
-                                        testdata_process[0]['data']['add_mark'])
+        self.add_marketchannel(add_abbr_name, testdata_process[0]['data']['add_cn_name'], testdata_process[0]['data']['add_en_name'], testdata_process[0]['data']['add_mark'])
+        mc_number = getattr(DA, 'mc_number')
         sleep(1.5)
         self.assertEqual(testdata_process[0]['check'][0], po.add_success(), "新增成功，返回实际结果是->: {}".format(po.add_success()))
         self.log.info("新增成功，返回实际结果是->: {}".format(po.add_success()))
-        print(getattr(DA, 'mc_number'))
+        print(hasattr(DA, 'mc_number'))
         screenshot.screenshot(self.driver, testdata_process[0]['screenshot'])
 
         self.log.info("当前执行测试用例ID-> {0} ; 测试点-> {1}".format(testdata_process[1]['id'], testdata_process[1]['detail']))
         # 调用查询方法
-        self.search_marketchannel(number, add_abbr_name)
+        self.search_marketchannel(mc_number, add_abbr_name)
         sleep(3)
-        self.assertEqual(number, po.searchlist_number(), "查询成功，返回实际结果是->: {}".format(po.searchlist_number()))
+        self.assertEqual(mc_number, po.searchlist_number(), "查询成功，返回实际结果是->: {}".format(po.searchlist_number()))
         self.log.info("查询成功，返回实际结果是->: {}".format(po.searchlist_number()))
         self.assertEqual(add_abbr_name, po.searchlist_addr_name(), "查询成功，返回实际结果是->: {}".format(po.searchlist_addr_name()))
         self.log.info("查询成功，返回实际结果是->: {}".format(po.searchlist_addr_name()))
 
-
+if __name__ == '__main__':
+    unittest.main()

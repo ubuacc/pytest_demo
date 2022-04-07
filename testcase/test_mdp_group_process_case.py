@@ -33,28 +33,30 @@ class TestMarketGroup(myunit.TestUnit):
         MarketGroup(self.driver).search_marketgroup(mc, number_mg, abbr_name_mg)
 
     def add_marketgroup(self, mc, abbr_name, cn_name, en_name, mark):
-        return MarketGroup(self.driver).add_marketgroup(mc, abbr_name, cn_name, en_name, mark)
+        MarketGroup(self.driver).add_marketgroup(mc, abbr_name, cn_name, en_name, mark)
 
     def test_marketgroup(self):
         self.log.info("当前执行测试用例ID-> {0} ; 测试点-> {1}".format(testdata_process[0]['id'], testdata_process[0]['detail']))
         # 调用新增市场大区函数
         po = MarketGroup(self.driver)
-        add_abbr_name = testdata_process[0]['data']['add_abbr_name'] + str(int(time.time()))
         mc = getattr(DA, 'mc_add_abbr_name')
+        add_abbr_name = testdata_process[0]['data']['add_abbr_name'] + str(int(time.time()))
+        setattr(DA, 'mg_add_abbr_name', add_abbr_name)
         self.log.info(mc)
-        number = self.add_marketgroup(mc, add_abbr_name, testdata_process[0]['data']['add_cn_name'], testdata_process[0]['data']['add_en_name'], testdata_process[0]['data']['add_mark'])
+        self.add_marketgroup(mc, add_abbr_name, testdata_process[0]['data']['add_cn_name'], testdata_process[0]['data']['add_en_name'], testdata_process[0]['data']['add_mark'])
         sleep(1.5)
+        mg_number = getattr(DA, 'mg_number')
         self.assertEqual(testdata_process[0]['check'][0], po.add_success(), "新增成功，返回实际结果是->: {}".format(po.add_success()))
         self.log.info("新增成功，返回实际结果是->: {}".format(po.add_success()))
         screenshot.screenshot(self.driver, testdata_process[0]['screenshot'])
 
         self.log.info("当前执行测试用例ID-> {0} ; 测试点-> {1}".format(testdata_process[1]['id'], testdata_process[1]['detail']))
         # 调用查询方法
-        self.search_marketgroup(mc, number, add_abbr_name)
+        self.search_marketgroup(mc, mg_number, add_abbr_name)
         sleep(3)
         self.assertEqual(mc, po.checklist_mc(), "查询成功，返回实际结果是->: {}".format(po.checklist_mc()))
         self.log.info("查询成功，返回实际结果是->: {}".format(po.checklist_mc()))
-        self.assertEqual(number, po.checklist_number(), "查询成功，返回实际结果是->: {}".format(po.checklist_number()))
+        self.assertEqual(mg_number, po.checklist_number(), "查询成功，返回实际结果是->: {}".format(po.checklist_number()))
         self.log.info("查询成功，返回实际结果是->: {}".format(po.checklist_number()))
         self.assertEqual(add_abbr_name, po.checklist_abbr_name(), "查询成功，返回实际结果是->: {}".format(po.checklist_abbr_name()))
         self.log.info("查询成功，返回实际结果是->: {}".format(po.checklist_abbr_name()))

@@ -4,10 +4,9 @@
 # @time: 2022/3/21 14:10
 
 import os
+from time import sleep
 from selenium.webdriver.common.by import By
-
-
-from public.page.basepage import BasePage
+from public.page.basepage import BasePage, DA
 from public.models.getyaml import YamlRead
 from config import setting
 
@@ -31,10 +30,10 @@ class MarketGroup(BasePage):
         """
         self.find_clickable_elem(self.market_group_loc).click()
 
-    click_mc_select_loc = (By.XPATH, configdata.get_elementinfo(2))
+    click_mc_select_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(2))
     def click_mc_select(self, mc):
         """
-        点击市场大区下拉框
+        市场大区下拉框输入市场大区精确搜索
         :return:
         """
         self.send_keys(self.click_mc_select_loc, mc)
@@ -87,7 +86,7 @@ class MarketGroup(BasePage):
         """
         return self.find_presence_elem(self.add_number_loc).text
 
-    add_click_mc_select_loc = (By.XPATH, configdata.get_elementinfo(8))
+    add_click_mc_select_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(8))
     def add_click_mc_select(self):
         """
         新增页面点击市场大区下拉框
@@ -95,10 +94,10 @@ class MarketGroup(BasePage):
         """
         self.find_clickable_elem(self.add_click_mc_select_loc).click()
 
-    add_sendkeys_mc_select_loc = (By.XPATH, configdata.get_elementinfo(9))
+    add_sendkeys_mc_select_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(9))
     def add_sendkeys_mc_select(self, mc):
         """
-        新增页面市场大区下拉框输入市场大区模糊搜索
+        新增页面市场大区下拉框输入市场大区精确搜索
         :return:
         """
         self.send_keys(self.add_sendkeys_mc_select_loc, mc)
@@ -106,7 +105,7 @@ class MarketGroup(BasePage):
     add_click_marketchannel_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(10))
     def add_click_marketchannel(self):
         """
-        新增页面点击选择模糊搜索后的市场大区
+        新增页面点击选择精确搜索后的市场大区
         :return:
         """
         self.click(self.add_click_marketchannel_loc)
@@ -231,6 +230,7 @@ class MarketGroup(BasePage):
         :return:
         """
         self.click_mc_select(mc)
+        sleep(1)
         self.click_marketchannel()
         self.number_mg(number_mg)
         self.abbr_name_mg(abbr_name_mg)
@@ -244,40 +244,17 @@ class MarketGroup(BasePage):
         self.click_add_button_mg()
         self.add_click_mc_select()
         self.add_sendkeys_mc_select(mc)
+        sleep(1)
         self.add_click_marketchannel()
         self.add_abbr_name(abbr_name)
         self.add_cn_name(cn_name)
         self.add_en_name(en_name)
         self.add_mark(mark)
         self.add_enable()
-        num = self.add_number()
+        mg_number = self.add_number()
+        setattr(DA, 'mg_number', mg_number)
         self.add_save_button()
-        return num
 
 
 
-if __name__ == '__main__':
-    from mdp_login import Login
-    from public.models.getdriver import browser
-    import logger
-    from time import sleep
-    from selenium.webdriver.support.select import Select
-    log = logger.Logs()
-    username = 'david.luo'
-    password = 'Ni&Li12345'
-    driver = browser()
-    case = Login(driver)
-    case.login_user(username, password)
-    case2 = MarketGroup(driver)
-    case2.open_marketgroup()
-    # case2.search_marketgroup('cn', '','test001')
-    num = case2.add_marketgroup('cn', 'test007', 'test007', 'test007', 'test07')
-    print(num)
-    print(type(num))
-    # case2.click_add_button_mg()
-    # sleep(1)
-    # case2.click_sele()
-    # case2.add_click_mc_select('cn')
-    # case2.click_mc_select('cn')
-    # case2.add_cn_name('test0001')
-    # case2.add_click_mc_select('cn')
+

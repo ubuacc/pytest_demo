@@ -7,8 +7,7 @@ import os
 from time import sleep
 
 from selenium.webdriver.common.by import By
-from public.page.basepage import BasePage, DataAssociation
-DA = DataAssociation()
+from public.page.basepage import BasePage, DA
 from public.models.getyaml import YamlRead
 from config import setting
 
@@ -205,14 +204,23 @@ class MarketChannel(BasePage):
         self.add_enable()
         sleep(1)
         mc_number = self.add_number()
-        sleep(1)
-        # DA = DataAssociation()
-        # # print(mc_number)
         setattr(DA, 'mc_number', mc_number)
-        print(getattr(DA, 'mc_number'))
+        setattr(DA, 'no', 12345)
+        # print(getattr(DA, 'mc_number'))
         self.add_save_button()
-        return mc_number
+        setattr(DA, 'nnn',2222222222222)
+        # return mc_number
+        print(id(DA))
+        print('111111')
 
+    def demo(self):
+        print(getattr(DA, 'mc_number'))
+        print('1111111111')
+
+class De():
+    def demo1(self):
+        print(getattr(DA, 'mc_number'))
+        print('222222222222')
 
 if __name__ == '__main__':
     from mdp_login import Login
@@ -228,16 +236,19 @@ if __name__ == '__main__':
     case2 = MarketChannel(driver)
 
     case2.open_marketchannel()
-    tt = case2.add_marketchannel("test141","测试11","test11","1111111111")
-    # case2.search_marketchannel('MC0001', 'CN')
+    case2.add_marketchannel("test144","测试11","test11","1111111111")
+    case2.demo()
+    case3 = De()
+    case3.demo1()
+    # case2.search_marketchannel('MC0002', 'CN')
     # print(case2.searchlist_number())
-    log.info(tt)
-    print(tt)
-    a = DataAssociation()
-    setattr(a, 'mc', tt)
-    print(hasattr(a, 'mc'))
-    # add = case2.add_success()
-    # print(add)
-    getattr(DataAssociation(), 'mc')
-    print(getattr(DataAssociation(), 'mc'))
+    # log.info(tt)
+    # print(tt)
+    # a = DataAssociation()
+    # setattr(a, 'mc', tt)
+    # print(hasattr(a, 'mc'))
+    # # add = case2.add_success()
+    # # print(add)
+    # getattr(DataAssociation(), 'mc')
+    # print(getattr(DataAssociation(), 'mc'))
     # log.info(case2.searchlist_addr_name())

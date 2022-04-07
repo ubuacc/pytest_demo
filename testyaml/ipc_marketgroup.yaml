@@ -11,11 +11,11 @@ testcase:
          find_type: xpath
          operate_type: click
          info: 点击进入市场群页面
-       - element_info: //*[@id="channel_id"]/div/div[2]/div/span/div/div/div/ul/li/div/input
-         find_type: xpath
+       - element_info: div[id='channel_id'] > div > div.ant-col.ant-form-item-control-wrapper > div > span > div > div > div > ul > li.ant-select-search.ant-select-search--inline > div > input
+         find_type: css_selector
          operate_type: send_keys
-         info: 市场大区下拉框输入市场大区模糊搜索
-       - element_info: ul > li.ant-select-dropdown-menu-item.ant-select-dropdown-menu-item-active
+         info: 市场大区下拉框输入市场大区精确搜索
+       - element_info:  div.ant-select-dropdown.ant-select-dropdown--multiple.ant-select-dropdown-placement-bottomLeft > div.ant-select-dropdown-content > ul > li.ant-select-dropdown-menu-item.ant-select-dropdown-menu-item-active
          find_type: css_selector
          operate_type: click
          info: 点击选择模糊搜索后的第一个市场大区
@@ -35,15 +35,15 @@ testcase:
          find_type: xpath
          operate_type: click
          info: 单击新增
-       - element_info: /html/body/div[5]/div/div[2]/div/div/div[2]/div[2]/div/div[1]/form/div/form/div[5]/div/div[2]/div/span/div/div/div/div[1]
-         find_type: xpath
+       - element_info: form.container.ant-form.ant-form-inline.eq-width.top-align > div[id='channel_id'] > div > div.ant-col.ant-form-item-control-wrapper > div > span > div > div > div > div.ant-select-selection__placeholder
+         find_type: css_selector
          operate_type: send_keys
          info: 新增市场群页面点击市场大区下拉框
-       - element_info: //*[@id="channel_id"]/div/div[2]/div/span/div/div/div/div[2]/div/input
+       - element_info: div[id='channel_id'] > div > div.ant-col.ant-form-item-control-wrapper > div > span > div > div > div > div.ant-select-search.ant-select-search--inline > div > input
          find_type: xpath
          operate_type: send_keys
          info: 新增市场群页面市场大区下拉框输入市场大区模糊搜索
-       - element_info:  ul > li.ant-select-dropdown-menu-item.ant-select-dropdown-menu-item-active
+       - element_info:  div.ant-select-dropdown.ant-select-dropdown--single.ant-select-dropdown-placement-bottomLeft > div.ant-select-dropdown-content > ul > li.ant-select-dropdown-menu-item.ant-select-dropdown-menu-item-active
          find_type: css_selector
          operate_type: click
          info: 点击选择第一个市场大区

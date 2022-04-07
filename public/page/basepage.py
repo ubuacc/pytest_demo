@@ -96,6 +96,8 @@ class DataAssociation:
     """
     pass
 
+DA = DataAssociation()
+
 
 
 if __name__ == '__main__':

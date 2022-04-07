@@ -37,3 +37,5 @@
 
 class data:
     pass
+
+da = data()
