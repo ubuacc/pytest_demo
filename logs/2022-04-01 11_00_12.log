@@ -1,3 +1,0 @@
-[2022-04-01 11:00:13,669] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_mpadd001.1 ; 测试点-> 新增市场流程
-[2022-04-01 11:00:18,479] [logger.py|__console] [line:41] INFO    : 新增成功，返回实际结果是->: 保存成功
-[2022-04-01 11:00:18,820] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_mpsearch001.2 ; 测试点-> 查询流程

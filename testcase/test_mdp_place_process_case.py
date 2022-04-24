@@ -35,26 +35,54 @@ class TestMarketPlace(myunit.TestUnit):
     def add_marketplace(self, mg, abbr_name, cn_name, en_name, mark):
         MarketPlace(self.driver).add_marketplace(mg, abbr_name, cn_name, en_name, mark)
 
+    def modify_marketplace(self, modify_mg, modify_cn_name, modify_en_name, modify_mark):
+        MarketPlace(self.driver).modify_marketplace(modify_mg, modify_cn_name, modify_en_name, modify_mark)
+
     def test_marketplace(self):
-        self.log.info("当前执行测试用例ID-> {0} ; 测试点-> {1}".format(testdata_process[0]['id'], testdata_process[0]['detail']))
+        self.log.info("当前执行测试流程ID-> {0} ; 测试流程-> {1}".format(testdata_process[0]['id'], testdata_process[0]['detail']))
         # 调用新增市场函数
         po = MarketPlace(self.driver)
-        add_abbr_name = testdata_process[0]['data']['add_abbr_name'] + str(int(time.time()))
-        mg = getattr(DA, 'mg_add_abbr_name')
-        self.add_marketplace(mg, add_abbr_name, testdata_process[0]['data']['add_cn_name'], testdata_process[0]['data']['add_en_name'], testdata_process[0]['data']['add_mark'])
+        mp_add_abbr_name = testdata_process[0]['data']['add_abbr_name'] + str(int(time.time()))
+        mg_add_abbr_name = getattr(DA, 'mg_add_abbr_name')
+        self.add_marketplace(mg_add_abbr_name, mp_add_abbr_name, testdata_process[0]['data']['add_cn_name'], testdata_process[0]['data']['add_en_name'], testdata_process[0]['data']['add_mark'])
         sleep(1.5)
         mp_number = getattr(DA, 'mp_number')
-        self.assertEqual(testdata_process[0]['check'][0], po.add_success(), "新增成功，返回实际结果是->: {}".format(po.add_success()))
+        self.assertEqual(testdata_process[0]['check'][0], po.add_success())
         self.log.info("新增成功，返回实际结果是->: {}".format(po.add_success()))
         screenshot.screenshot(self.driver, testdata_process[0]['screenshot'])
 
-        self.log.info("当前执行测试用例ID-> {0} ; 测试点-> {1}".format(testdata_process[1]['id'], testdata_process[1]['detail']))
+        self.log.info("当前执行测试流程ID-> {0} ; 测试流程-> {1}".format(testdata_process[1]['id'], testdata_process[1]['detail']))
         # 调用查询方法
-        self.search_marketplace(mg, mp_number, add_abbr_name)
+        self.search_marketplace(mg_add_abbr_name, mp_number, mp_add_abbr_name)
         sleep(3)
-        self.assertEqual(mg, po.checklist_mg(), "查询成功，返回实际结果是->: {}".format(po.checklist_mg()))
-        self.log.info("查询成功，返回实际结果是->: {}".format(po.checklist_mg()))
-        self.assertEqual(mp_number, po.checklist_number(), "查询成功，返回实际结果是->: {}".format(po.checklist_number()))
-        self.log.info("查询成功，返回实际结果是->: {}".format(po.checklist_number()))
-        self.assertEqual(add_abbr_name, po.checklist_abbr_name(), "查询成功，返回实际结果是->: {}".format(po.checklist_abbr_name()))
-        self.log.info("查询成功，返回实际结果是->: {}".format(po.checklist_abbr_name()))
+        self.assertEqual(mg_add_abbr_name, po.checklist_mg())
+        self.log.info("查询成功，返回市场群缩写字段实际结果是->: {}".format(po.checklist_mg()))
+        self.assertEqual(mp_number, po.checklist_number())
+        self.log.info("查询成功，返回市场编号字段实际结果是->: {}".format(po.checklist_number()))
+        self.assertEqual(mp_add_abbr_name, po.checklist_abbr_name())
+        self.log.info("查询成功，返回市场缩写字段实际结果是->: {}".format(po.checklist_abbr_name()))
+        self.assertEqual(testdata_process[1]['check'][3], po.searchlist_cn_name())
+        self.log.info("查询成功，返回市场群中文名字段实际结果是->: {}".format(po.searchlist_cn_name()))
+        self.assertEqual(testdata_process[1]['check'][4], po.searchlist_en_name())
+        self.log.info("查询成功，返回市场群中文名字段实际结果是->: {}".format(po.searchlist_en_name()))
+        screenshot.screenshot(self.driver, testdata_process[1]['screenshot'])
+
+        self.log.info("当前执行测试流程ID-> {0} ; 测试流程-> {1}".format(testdata_process[2]['id'], testdata_process[2]['detail']))
+        # 调用修改市场大区函数
+        self.modify_marketplace(mg_add_abbr_name, testdata_process[2]['data']['modify_cn_name'],
+                                testdata_process[2]['data']['modify_en_name'],
+                                testdata_process[2]['data']['modify_mark'])
+        sleep(1.5)
+        self.assertEqual(testdata_process[2]['check'][0], po.modify_success())
+        self.log.info("修改成功，返回实际结果是->: {}".format(po.modify_success()))
+        screenshot.screenshot(self.driver, testdata_process[2]['screenshot'])
+
+        self.log.info("当前执行测试流程ID-> {0} ; 测试流程-> {1}".format(testdata_process[3]['id'], testdata_process[3]['detail']))
+        # 调用查询市场大区函数
+        self.search_marketplace(mg_add_abbr_name, mp_number, mp_add_abbr_name)
+        sleep(3)
+        self.assertEqual(testdata_process[3]['check'][0], po.searchlist_cn_name())
+        self.log.info("查询成功，返回市场大区中文名字段实际结果是->: {}".format(po.searchlist_cn_name()))
+        self.assertEqual(testdata_process[3]['check'][1], po.searchlist_en_name())
+        self.log.info("查询成功，返回市场大区中文名字段实际结果是->: {}".format(po.searchlist_en_name()))
+        screenshot.screenshot(self.driver, testdata_process[1]['screenshot'])

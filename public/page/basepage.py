@@ -3,8 +3,10 @@
 # @Author: will.tan
 # @time:  10:08
 import configparser
+from time import sleep
 
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -80,15 +82,29 @@ class BasePage(object):
 
     def send_keys(self, locator, text):
         element = self.find_presence_elem(locator)
-        element.clear()
+        sleep(0.3)
+        element.send_keys(Keys.CONTROL, 'a')
+        element.send_keys(Keys.DELETE)
         element.send_keys(text)
+
+    # def send_keys(self, loc, vaule, clear_first=True, click_first=True):
+    #     try:
+    #         # loc = getattr(self, "_%s" % loc)  # getattr相当于实现self.loc
+    #         if click_first:
+    #             self.find_presence_elem(loc).click()
+    #         if clear_first:
+    #             self.find_presence_elem(loc).clear()
+    #             self.find_presence_elem(loc).send_keys(vaule)
+    #     except AttributeError:
+    #         self.log.error("%s 页面中未能找到 %s 元素" % (self, loc))
 
     def click(self, mark):
         element = self.find_clickable_elem(mark)
         element.click()
 
-    def actions_move_click(self, mark):
-        ActionChains(self.driver).move_to_element(mark).perform()
+    # def actions_move_click(self, ele, mark):
+    #     element = self.find_presence_elem(ele)
+    #     ActionChains(self.driver).move_to_element(ele).move_to_element(element).click(element).perform()
 
 class DataAssociation:
     """
@@ -101,11 +117,12 @@ DA = DataAssociation()
 
 
 if __name__ == '__main__':
-    locator1 = (By.ID,'kw')
+    locator1 = (By.ID, 'kw')
     locator2 = (By.ID, 'su')
     driver = webdriver.Chrome()
     case = BasePage(driver)
     driver.get('http://www.baidu.com')
-    case.find_presence_elem(locator=locator1).send_keys('hhh')
-    # case.find_clickable_elem(locator2).click()
-    case.actions_move_click(locator2)
+
+
+    case.send_keys(locator1, 'selenium')
+    # case.actions_move_click(locator2)

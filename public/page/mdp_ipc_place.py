@@ -180,6 +180,97 @@ class MarketPlace(BasePage):
         """
         self.click(self.click_export_button_loc)
 
+    click_modify_button_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(19))
+
+    def click_modify_button(self):
+        """
+        点击查询后第一条数据的编辑按钮
+        :return:
+        """
+        self.find_clickable_elem(self.click_modify_button_loc).click()
+
+    modify_click_mg_select_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(20))
+
+    def modify_click_mg_select(self):
+        """
+        编辑页面点击市场群下拉框
+        :return:
+        """
+        self.find_clickable_elem(self.modify_click_mg_select_loc).click()
+
+    modify_sendkeys_mc_select_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(21))
+
+    def modify_sendkeys_mc_select(self, mc):
+        """
+        编辑页面市场大区下拉框输入市场群精确搜索
+        :return:
+        """
+        self.send_keys(self.modify_sendkeys_mc_select_loc, mc)
+
+    modify_click_marketgroup_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(22))
+
+    def modify_click_marketgroup(self):
+        """
+        编辑页面点击选择精确搜索后的市场群
+        :return:
+        """
+        self.find_clickable_elem(self.modify_click_marketgroup_loc).click()
+
+    modify_cn_name_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(23))
+
+    def modify_cn_name(self, modify_cn_name):
+        """
+        输入修改的中文名
+        :return:
+        """
+        self.send_keys(self.modify_cn_name_loc, modify_cn_name)
+
+    modify_en_name_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(24))
+
+    def modify_en_name(self, en_name):
+        """
+        输入修改的英文名
+        :return:
+        """
+        self.send_keys(self.modify_en_name_loc, en_name)
+
+    modify_mark_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(25))
+
+    def modify_mark(self, mark):
+        """
+        输入修改的备注
+        :param mark:
+        :return:
+        """
+        self.send_keys(self.modify_mark_loc, mark)
+
+    modify_enable_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(26))
+
+    def modify_enable(self):
+        """
+        修改为启用状态
+        :return:
+        """
+        self.click(self.modify_enable_loc)
+
+    modify_disable_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(27))
+
+    def modify_disable(self):
+        """
+        修改为禁用状态
+        :return:
+        """
+        self.click(self.modify_disable_loc)
+
+    modify_save_button_loc = (By.XPATH, configdata.get_elementinfo(28))
+
+    def modify_save_button(self):
+        """
+        编辑页面点击保存
+        :return:
+        """
+        self.click(self.modify_save_button_loc)
+
     checklist_mg_loc = (By.XPATH, configdata.get_checkelementinfo(1))
     def checklist_mg(self):
         """
@@ -220,6 +311,33 @@ class MarketPlace(BasePage):
         """
         return self.find_presence_elem(self.add_success_loc).text
 
+    modify_success_loc = (By.CSS_SELECTOR, configdata.get_checkelementinfo(6))
+
+    def modify_success(self):
+        """
+        修改成功后返回保存字段
+        :return:
+        """
+        return self.find_presence_elem(self.modify_success_loc).text
+
+    searchlist_cn_name_loc = (By.CSS_SELECTOR, configdata.get_checkelementinfo(7))
+
+    def searchlist_cn_name(self):
+        """
+        返回查询结果列表的中文名字段
+        :return:
+        """
+        return self.find_presence_elem(self.searchlist_cn_name_loc).text
+
+    searchlist_en_name_loc = (By.CSS_SELECTOR, configdata.get_checkelementinfo(8))
+
+    def searchlist_en_name(self):
+        """
+        返回查询结果列表的中文名字段
+        :return:
+        """
+        return self.find_presence_elem(self.searchlist_en_name_loc).text
+
     """组合操作"""
     def open_marketplace(self):
         """
@@ -229,13 +347,20 @@ class MarketPlace(BasePage):
         self.click_ipc_select()
         self.click_market_place()
 
+    select_mg_loc = (By.CSS_SELECTOR, configdata.get_checkelementinfo(9))
+    select_delete_loc = (By.CSS_SELECTOR, configdata.get_elementinfo(29))
     def search_marketplace(self, mg, number_mp, abbr_name_mp):
         """
-        市场查询
+        市场查询:市场群输入框有返回值时清除输入框（查询仅限于单市场群查询）
         :return:
         """
+        if self.find_presence_elem(self.select_mg_loc).text != "":
+            self.find_clickable_elem(self.select_mg_loc).click()
+            self.find_presence_elem(self.select_delete_loc).click()
+        else:
+            pass
         self.sendkey_mg_select(mg)
-        sleep(1)
+        sleep(0.5)
         self.click_marketgroup()
         self.number_mp(number_mp)
         self.abbr_name_mp(abbr_name_mp)
@@ -249,7 +374,7 @@ class MarketPlace(BasePage):
         self.click_add_button_mp()
         self.add_click_mg_select()
         self.add_sendkeys_mg_select(mg)
-        sleep(1)
+        sleep(0.5)
         self.add_click_marketgroup()
         self.add_abbr_name(abbr_name)
         self.add_cn_name(cn_name)
@@ -259,6 +384,27 @@ class MarketPlace(BasePage):
         mp_number = self.add_number()
         setattr(DA, 'mp_number', mp_number)
         self.add_save_button()
+
+    modify_select_mg_loc = (By.CSS_SELECTOR, configdata.get_checkelementinfo(10))
+
+    def modify_marketplace(self, modify_mg, modify_cn_name, modify_en_name, modify_mark):
+        """
+        修改市场：启用状态
+        :return:
+        """
+        self.click_modify_button()
+        if self.find_presence_elem(self.modify_select_mg_loc).text != modify_mg:  # 区分大小写
+            self.modify_click_mg_select()
+            self.modify_sendkeys_mc_select(modify_mg)
+            sleep(1)
+            self.modify_click_marketgroup()
+        else:
+            pass
+        self.modify_cn_name(modify_cn_name)
+        self.modify_en_name(modify_en_name)
+        self.modify_mark(modify_mark)
+        self.modify_enable()
+        self.modify_save_button()
 
 
 
@@ -274,7 +420,13 @@ if __name__ == '__main__':
     case.login_user(username, password)
     case2 = MarketPlace(driver)
     case2.open_marketplace()
-    case2.search_marketplace('a', '','test007')
+    case2.add_marketplace('AliExpress', 'test12', 'test12', 'test12', 'test12')
+    sleep(3)
+    case2.search_marketplace('AliExpress', '', 'test12')
+    sleep(3)
+    case2.modify_marketplace('AliExpress', '修改test12', 'modifytest12', 'modifymark')
+    sleep(3)
+    case2.search_marketplace('AliExpress', '', 'test12')
     # num = case2.add_marketplace('a', 'test007', 'test007', 'test007', 'test07')
     # print(num)
     # print(type(num))

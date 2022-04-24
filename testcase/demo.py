@@ -33,9 +33,42 @@
 # emp1=Employee("高淇",100)
 # print(emp1.salary)
 # emp1.salary=-200
+from time import sleep
+
+from selenium.webdriver.common.by import By
 
 
 class data:
     pass
 
 da = data()
+
+from public.models.getdriver import browser
+from public.models import logger
+from page.basepage import DataAssociation
+from selenium.webdriver.common.keys import Keys
+log = logger.Logs()
+driver = browser()
+
+def send_key(loc, vaule, clear_first=True, click_first=True):
+        try:
+            # loc = getattr(self, "_%s" % loc)  # getattr相当于实现self.loc
+            element = driver.find_element(*loc)
+            if click_first:
+                element.click()
+            if clear_first:
+                element.clear()
+                element.send_keys(vaule)
+        except AttributeError:
+            log.error("%s 页面中未能找到 %s 元素" % ('-----', loc))
+
+driver.get("https://www.baidu.com/")
+loc = (By.ID, 'kw')
+send_key(loc, 'hhhhhhh')
+send_key(loc, 'selenium')
+# element = driver.find_element(By.ID, 'kw')
+# element.send_keys('hhhahahah')
+# sleep(3)
+# element.send_keys(Keys.CONTROL, 'a')
+# element.send_keys(Keys.DELETE)
+# element.send_keys('selenium')

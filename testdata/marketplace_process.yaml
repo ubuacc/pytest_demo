@@ -1,10 +1,10 @@
 -
   id: test_mpadd001.1
   detail: 新增市场流程
-  screenshot: success_add
+  screenshot: marketplace_add_success
   data:
-    mg: test1
-    add_abbr_name: test
+    mg: ""  #取新增市场群流程中的市场群为依赖值
+    add_abbr_name: mp #mp+当前时间戳组合为唯一的abbr_name字段作为新增的缩写字段
     add_cn_name: 测试
     add_en_name: test
     add_mark: 测试用按时间戳保持唯一
@@ -12,12 +12,41 @@
     - 保存成功
 
 -
-  id: test_mpsearch001.2
+  id: test_mpsearch001.1
   detail: 查询流程
-  screenshot: search_success
+  screenshot: marketplace_search_success
   data:
-    mg: test1
+    mp: "" #取新增市场流程中的市场群为依赖值
     number: ""  #取新增市场时获取页面的number字段作为查询条件number值
     abbr_name: test
   check:
-    - ""  #取新增市场时的新增字段作为check值
+    - ""  #市场群缩写字段 取新增市场时的新增字段作为check值
+    - ""  #编号字段 取新增市场时的新增字段作为check值
+    - ""  #缩写字段 取新增市场时的新增字段作为check值
+    - 测试
+    - test
+
+
+-
+  id: test_mgmodify001.1
+  detail: 修改市场群流程
+  screenshot: marketplace_modify_success
+  data:
+    modify_mg: "" #取新增市场大区流程中的市场大区为依赖值 流程默认不修改市场大区
+    modify_cn_name: 修改测试
+    modify_en_name: modify_test
+    modify_mark: 修改测试用按时间戳保持唯一
+  check:
+    - 保存成功
+
+-
+  id: test_mgsearch001.2
+  detail: 查询市场群流程
+  screenshot: marketplace_modify_search_success
+  data:
+    mp: "" #取新增市场大区流程中的市场大区为依赖值 流程默认不修改市场大区
+    number: ""  #取新增市场大区时获取页面的number字段作为查询条件number值
+    abbr_name: mp
+  check:
+    - 修改测试
+    - modify_test

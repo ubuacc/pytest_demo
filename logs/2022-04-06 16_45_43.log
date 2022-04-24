@@ -1,5 +1,0 @@
-[2022-04-06 16:45:45,169] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_mcadd001.1 ; 测试点-> 正向添加成功
-[2022-04-06 16:45:50,983] [logger.py|__console] [line:41] INFO    : 新增成功，返回实际结果是->: 保存成功
-[2022-04-06 16:45:51,411] [logger.py|__console] [line:41] INFO    : 当前执行测试用例ID-> test_mcsearch001.2 ; 测试点-> 查询流程
-[2022-04-06 16:45:55,026] [logger.py|__console] [line:41] INFO    : 查询成功，返回实际结果是->: MC0249
-[2022-04-06 16:45:55,097] [logger.py|__console] [line:41] INFO    : 查询成功，返回实际结果是->: test1649234745

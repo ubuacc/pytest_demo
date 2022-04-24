@@ -54,7 +54,8 @@ from getyaml import YamlRead
 
 # testdata = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'marketchannel.yaml')).yaml_all()
 # print(testdata)
-
+testdata_process = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'marketchannel_process.yaml')).yaml_all()
+print(testdata_process)
 # testdata_add = YamlRead(os.path.join(setting.TEST_DATA_YAML, 'add_marketchannel.yaml')).yaml_all()
 # print(testdata_add)
 # print(int(time.time()))
