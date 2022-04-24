@@ -62,10 +62,42 @@ def send_key(loc, vaule, clear_first=True, click_first=True):
         except AttributeError:
             log.error("%s 页面中未能找到 %s 元素" % ('-----', loc))
 
+def scroll(driver):
+    driver.execute_script(""" 
+        (function () { 
+            var y = document.body.scrollTop; 
+            var step = 100; 
+            window.scroll(0, y); 
+            function f() { 
+                if (y < document.body.scrollHeight) { 
+                    y += step; 
+                    window.scroll(0, y); 
+                    setTimeout(f, 50); 
+                }
+                else { 
+                    window.scroll(0, y); 
+                    document.title += "scroll-done"; 
+                } 
+            } 
+            setTimeout(f, 1000); 
+        })(); 
+        """)
+
 driver.get("https://www.baidu.com/")
 loc = (By.ID, 'kw')
-send_key(loc, 'hhhhhhh')
 send_key(loc, 'selenium')
+driver.find_element(By.ID, 'su').click()
+sleep(2)
+# js = "var q=document.documentElement.scrollTop=10000"
+# driver.execute_script(js)
+# driver.execute_script("window.scrollBy(0, 500)")
+# tar = driver.find_element(By.CSS_SELECTOR, 'div[id="page"] > div > a.n')
+# driver.execute_script('arguments[0].scrollIntoView();', tar)
+target = driver.find_element(By.XPATH, "//*[@id='2']/div/div[1]/h3/a")
+
+driver.execute_script("arguments[0].scrollIntoView();", target)
+sleep(3)
+
 # element = driver.find_element(By.ID, 'kw')
 # element.send_keys('hhhahahah')
 # sleep(3)
